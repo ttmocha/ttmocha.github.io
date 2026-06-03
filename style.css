@@ -307,6 +307,7 @@ a { color: inherit; text-decoration: none; }
 .badge:hover { background:var(--accent); color:white; border-color:var(--accent); transform:translateY(-2px); }
 
 /* Proficiency bars */
+.proficiency-block {}
 .prof-bars { display: flex; flex-direction: column; gap: 0.9rem; }
 .prof-row  { display: flex; flex-direction: column; }
 .prof-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
@@ -532,4 +533,95 @@ footer p { font-size:0.76rem; color:rgba(255,255,255,0.2); }
   .modal-links  { flex-direction:column; }
   .modal-links a { justify-content:center; }
   footer        { flex-direction:column; text-align:center; }
+}
+
+/* Staggered timeline delays for 4 items */
+.tl-item:nth-child(1) { transition-delay: 0s; }
+.tl-item:nth-child(2) { transition-delay: 0.12s; }
+.tl-item:nth-child(3) { transition-delay: 0.24s; }
+.tl-item:nth-child(4) { transition-delay: 0.36s; }
+
+/* ========================================================================== */
+/*                        GROUPED CUSTOMER SERVICE CARD                       */
+/* ========================================================================== */
+
+.tl-card-compact {
+  background: var(--card-soft);
+}
+
+.tl-dot-muted {
+  background: var(--muted) !important;
+  box-shadow: 0 0 0 3px rgba(107,94,82,0.3) !important;
+}
+
+.cs-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.cs-role {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: var(--card);
+  transition: background 0.18s;
+}
+
+.cs-role:not(:last-child) {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.cs-role:hover { background: var(--cream); }
+
+.cs-role-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.cs-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.cs-company {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.1rem;
+}
+
+.cs-detail {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.cs-date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Staggered timeline delays */
+.tl-item:nth-child(1) { transition-delay: 0s; }
+.tl-item:nth-child(2) { transition-delay: 0.15s; }
+
+@media (max-width: 580px) {
+  .cs-role { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .cs-date { font-size: 0.7rem; }
 }
