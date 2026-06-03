@@ -15,13 +15,11 @@
 <div class="cursor-glow" id="cursorGlow"></div>
 <div class="page-loader" id="pageLoader"><div class="loader-inner"></div></div>
 
-<!-- HAMBURGER -->
 <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
   <span></span><span></span><span></span>
 </button>
 <div class="nav-overlay" id="navOverlay"></div>
 
-<!-- SIDE NAV -->
 <nav class="sidenav" id="sidenav" aria-label="Site navigation">
   <div class="nav-brand">Ty Thiemann<span>Portfolio</span></div>
   <ul>
@@ -34,7 +32,6 @@
   <div class="nav-footer">Based in Brisbane, Australia</div>
 </nav>
 
-<!-- MAIN -->
 <div class="main">
 
   <!-- HERO -->
@@ -62,11 +59,10 @@
   <section id="about" class="section reveal">
     <p class="section-label">About me</p>
     <h2 class="section-title">Computer Science Graduate<br>based in Brisbane.</h2>
-
     <div class="about-grid">
       <div class="about-left">
         <p class="about-intro">
-          I'm a Computer Science graduate passionate about creating clean,
+          I'm passionate about creating clean,
           scalable, and user-focused software solutions.
         </p>
         <p class="about-body">
@@ -74,12 +70,11 @@
           modern digital experiences. I'm especially drawn to web development,
           performance optimisation, and building interfaces that feel effortless.
         </p>
-
         <div class="bento-grid">
           <div class="bento-card bento-edu">
             <span class="bento-icon">&#127891;</span>
             <h4>Education</h4>
-            <p>Bachelor of IT (2021–2025)<br>Computer Science · Network Security</p>
+            <p>Bachelor of IT (2021&ndash;2025)<br>Computer Science &middot; Network Security</p>
           </div>
           <div class="bento-card bento-focus">
             <span class="bento-icon">&#127919;</span>
@@ -95,7 +90,6 @@
         </div>
       </div>
 
-      <!-- Skills col -->
       <div class="skills-col">
         <div class="skill-block">
           <h3>Languages</h3>
@@ -153,18 +147,14 @@
         <p class="project-num">01</p>
         <h3>EyeStrain</h3>
         <p class="project-tagline">Digital wellbeing desktop app focused on healthier screen habits through customisable reminders and break intervals.</p>
-        <div class="project-tags">
-          <span>Java</span><span>JavaFX</span><span>Agile</span>
-        </div>
+        <div class="project-tags"><span>Java</span><span>JavaFX</span><span>Agile</span></div>
         <p class="project-cta">View Details <span>&rarr;</span></p>
       </article>
       <article class="project-card" onclick="openModal('m2')" role="button" tabindex="0">
         <p class="project-num">02</p>
         <h3>GeoDesk AI</h3>
         <p class="project-tagline">Customisable geospatial dashboard built with Python and Django for a more pleasant and productive user experience.</p>
-        <div class="project-tags">
-          <span>JavaScript</span><span>Django</span><span>Python</span>
-        </div>
+        <div class="project-tags"><span>JavaScript</span><span>Django</span><span>Python</span></div>
         <p class="project-cta">View Details <span>&rarr;</span></p>
       </article>
     </div>
@@ -178,6 +168,7 @@
     <h2 class="section-title">Experience</h2>
     <div class="timeline">
 
+      <!-- OreFox — full card, technical -->
       <div class="tl-item reveal-tl">
         <div class="tl-marker">
           <div class="tl-dot"></div>
@@ -209,28 +200,61 @@
         </div>
       </div>
 
+      <!-- Customer Service — grouped compact card -->
       <div class="tl-item reveal-tl">
         <div class="tl-marker">
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot-muted"></div>
         </div>
-        <div class="tl-card">
+        <div class="tl-card tl-card-compact">
           <div class="tl-header">
             <div>
-              <p class="tl-company">Coles Group</p>
-              <h3 class="tl-role">Customer Service</h3>
-              <p class="tl-sub">Part Time &mdash; Ongoing</p>
+              <h3 class="tl-role">Customer Service Roles</h3>
+              <p class="tl-sub">Consistently employed throughout university &mdash; 2022 to present</p>
             </div>
             <div class="tl-right">
-              <span class="tl-date">Current</span>
               <span class="tl-badge nontech">Non-Tech</span>
             </div>
           </div>
-          <p class="tl-desc">Delivers excellent customer service in a fast-paced retail environment, demonstrating strong communication and professionalism.</p>
-          <ul class="tl-list">
-            <li><strong>Customer Service:</strong> Strong communication and social confidence assisting customers daily.</li>
-            <li><strong>Reliability &amp; Teamwork:</strong> Consistent positive contribution to team dynamics.</li>
-            <li><strong>Compliance:</strong> Adheres to company procedures for smooth store operations.</li>
-          </ul>
+
+          <p class="tl-desc">
+            Maintained continuous part-time employment across three customer-facing roles throughout my degree,
+            developing strong communication, reliability, and the ability to perform under pressure.
+          </p>
+
+          <!-- Compact role rows -->
+          <div class="cs-roles">
+            <div class="cs-role">
+              <div class="cs-role-left">
+                <span class="cs-dot"></span>
+                <div>
+                  <p class="cs-company">Coles Group</p>
+                  <p class="cs-detail">Retail customer service in a high-volume environment</p>
+                </div>
+              </div>
+              <span class="cs-date">Current</span>
+            </div>
+            <div class="cs-role">
+              <div class="cs-role-left">
+                <span class="cs-dot"></span>
+                <div>
+                  <p class="cs-company">Mt Warren Lanes</p>
+                  <p class="cs-detail">Guest experience, POS systems &amp; venue operations</p>
+                </div>
+              </div>
+              <span class="cs-date">Jun 2023 &ndash; May 2025</span>
+            </div>
+            <div class="cs-role">
+              <div class="cs-role-left">
+                <span class="cs-dot"></span>
+                <div>
+                  <p class="cs-company">Go Bowling Ashmore</p>
+                  <p class="cs-detail">Front-line service in a fast-paced entertainment venue</p>
+                </div>
+              </div>
+              <span class="cs-date">Nov 2022 &ndash; May 2023</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -308,9 +332,7 @@
   </div>
 </div>
 
-<!-- JS -->
 <script>
-/* Page loader */
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('pageLoader').classList.add('done');
@@ -318,14 +340,12 @@ window.addEventListener('load', () => {
   }, 600);
 });
 
-/* Cursor glow */
 const glow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', e => {
   glow.style.left = e.clientX + 'px';
   glow.style.top  = e.clientY + 'px';
 });
 
-/* Particles */
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
@@ -353,7 +373,6 @@ let parts = Array.from({length: 20}, () => { const p = mkParticle(); p.y = Math.
   requestAnimationFrame(animP);
 })();
 
-/* Typing — 2 focused phrases only */
 const lines = [
   'CS grad focused on clean, modern solutions.',
   'Building interfaces that feel effortless.'
@@ -369,7 +388,6 @@ function typeLoop() {
 }
 typeLoop();
 
-/* Proficiency bars */
 const profObs = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     document.querySelectorAll('.prof-fill').forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
@@ -379,13 +397,11 @@ const profObs = new IntersectionObserver(entries => {
 const profBlock = document.querySelector('.proficiency-block');
 if (profBlock) profObs.observe(profBlock);
 
-/* Timeline reveal */
 const tlObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); tlObs.unobserve(e.target); } });
-}, { threshold: 0.15 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.reveal-tl').forEach(el => tlObs.observe(el));
 
-/* Nav */
 const hamburger = document.getElementById('hamburger');
 const sidenav   = document.getElementById('sidenav');
 const overlay   = document.getElementById('navOverlay');
@@ -395,7 +411,6 @@ hamburger.addEventListener('click', () => sidenav.classList.contains('open') ? c
 overlay.addEventListener('click', closeNav);
 document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeNav));
 
-/* Active nav */
 const sectionObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -407,13 +422,11 @@ const sectionObs = new IntersectionObserver(entries => {
 }, { threshold: 0.35 });
 document.querySelectorAll('section[id]').forEach(s => sectionObs.observe(s));
 
-/* Scroll reveal */
 const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-/* Modals */
 function openModal(id)  { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeModal(id) {
   const m = document.getElementById(id);
