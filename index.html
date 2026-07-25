@@ -1,179 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ty Thiemann | Developer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="loading">
+<body>
+
+<!-- COFFEE LOADER -->
+<div class="loader" id="loader">
+  <div class="coffee-wrap">
+    <svg class="coffee-svg" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="steam s1" d="M28 18 Q26 12 28 6 Q30 0 28 -4" stroke="rgba(200,168,130,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path class="steam s2" d="M40 16 Q38 10 40 4 Q42 -2 40 -6" stroke="rgba(200,168,130,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path class="steam s3" d="M52 18 Q50 12 52 6 Q54 0 52 -4" stroke="rgba(200,168,130,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M12 26 L18 78 Q18 82 22 82 L58 82 Q62 82 62 78 L68 26 Z" fill="rgba(200,168,130,0.12)" stroke="rgba(200,168,130,0.5)" stroke-width="2"/>
+      <path d="M62 38 Q78 38 78 52 Q78 66 62 66" stroke="rgba(200,168,130,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="40" cy="84" rx="32" ry="5" fill="rgba(200,168,130,0.15)" stroke="rgba(200,168,130,0.4)" stroke-width="1.5"/>
+      <clipPath id="cupClip">
+        <path d="M13 27 L19 77 Q19 81 22 81 L58 81 Q61 81 61 77 L67 27 Z"/>
+      </clipPath>
+      <rect class="coffee-fill" x="10" y="26" width="60" height="56" clip-path="url(#cupClip)" fill="url(#coffeeGrad)"/>
+      <defs>
+        <linearGradient id="coffeeGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0%" stop-color="#b85c2a" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#6b3a1f" stop-opacity="0.95"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <p class="loader-label">Brewing something good...</p>
+  </div>
+</div>
 
 <canvas id="particleCanvas"></canvas>
 <div class="cursor-glow" id="cursorGlow"></div>
-<div class="page-loader" id="pageLoader"><div class="loader-inner"></div></div>
 
-<button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-  <span></span><span></span><span></span>
-</button>
-<div class="nav-overlay" id="navOverlay"></div>
-
-<nav class="sidenav" id="sidenav" aria-label="Site navigation">
-  <div class="nav-brand">Ty Thiemann<span>Portfolio</span></div>
-  <ul>
-    <li><a href="#hero"       class="nav-link"><span class="dot"></span>Home</a></li>
-    <li><a href="#about"      class="nav-link"><span class="dot"></span>About</a></li>
-    <li><a href="#projects"   class="nav-link"><span class="dot"></span>Projects</a></li>
-    <li><a href="#experience" class="nav-link"><span class="dot"></span>Experience</a></li>
-    <li><a href="#contact"    class="nav-link"><span class="dot"></span>Contact</a></li>
-  </ul>
-  <div class="nav-footer">Based in Brisbane, Australia</div>
+<!-- SCROLL DOTS -->
+<nav class="scroll-dots" aria-label="Page sections">
+  <a href="#hero"       class="sdot active" data-label="Home"       aria-label="Home"></a>
+  <a href="#about"      class="sdot"         data-label="About"      aria-label="About"></a>
+  <a href="#projects"   class="sdot"         data-label="Projects"   aria-label="Projects"></a>
+  <a href="#experience" class="sdot"         data-label="Experience" aria-label="Experience"></a>
+  <a href="#contact"    class="sdot"         data-label="Contact"    aria-label="Contact"></a>
 </nav>
 
-<div class="main">
+<!-- HAMBURGER -->
+<button class="hamburger" id="hamburger" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<nav class="drawer" id="drawer">
+  <div class="drawer-brand">Ty Thiemann</div>
+  <ul>
+    <li><a href="#hero"       class="drawer-link">Home</a></li>
+    <li><a href="#about"      class="drawer-link">About</a></li>
+    <li><a href="#projects"   class="drawer-link">Projects</a></li>
+    <li><a href="#experience" class="drawer-link">Experience</a></li>
+    <li><a href="#contact"    class="drawer-link">Contact</a></li>
+  </ul>
+  <div class="drawer-socials">
+    <a href="https://github.com/ttmocha" target="_blank" rel="noopener" class="drawer-social">GitHub</a>
+    <a href="https://www.linkedin.com/in/ty-thiemann-a4a1b3346/" target="_blank" rel="noopener" class="drawer-social">LinkedIn</a>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <p class="hero-eyebrow">Computer Science Graduate</p>
-      <h1>Hi, I'm <span>Ty Thiemann</span></h1>
-      <p class="hero-sub">
-        <span id="typedText"></span><span class="type-cursor">|</span>
-      </p>
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-mark-wrap" aria-hidden="true">
+      <svg class="hero-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#b85c2a"/>
+            <stop offset="100%" stop-color="#c8a882"/>
+          </linearGradient>
+          <linearGradient id="letterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#c8a882"/>
+            <stop offset="100%" stop-color="#b85c2a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="float-char fc1">✦</span>
+      <span class="float-char fc2">○</span>
+      <span class="float-char fc3">·</span>
+    </div>
+
+    <div class="hero-text">
+      <p class="hero-eyebrow"><span class="eyebrow-line"></span>Computer Science Graduate</p>
+      <h1>Hi, I'm<br><span>Ty Thiemann</span></h1>
+      <p class="hero-desc">I build clean, thoughtful web experiences — focused on design, usability and user needs.</p>
+      <div class="hero-socials">
+        <a href="https://github.com/ttmocha" target="_blank" rel="noopener" class="social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/ty-thiemann-a4a1b3346/" target="_blank" rel="noopener" class="social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
       <div class="hero-ctas">
         <a href="#projects" class="btn btn-primary">View my work &rarr;</a>
         <a href="#contact"  class="btn btn-ghost">Get in touch</a>
       </div>
       <div class="status-pill">
         <span class="status-dot"></span>
-        Available for junior roles &amp; Graduate Positions
+        Available for junior roles &amp; graduate positions
       </div>
     </div>
-  </section>
+  </div>
 
-  <div class="divider"></div>
+  <div class="building-strip">
+    <span class="building-label">Currently learning</span>
+    <div class="building-items">
+      <span>Web Design</span><span class="building-sep">·</span>
+      <span>System Design</span><span class="building-sep">·</span>
+      <span>Application Design</span><span class="building-sep">·</span>
+      <span>Japanese</span>
+    </div>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section reveal">
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about" class="section reveal">
+  <div class="section-inner">
+    <div class="section-num" id="snum-about">01</div>
     <p class="section-label">About me</p>
     <h2 class="section-title">Computer Science Graduate<br>based in Brisbane.</h2>
+
     <div class="about-grid">
+
+      <!-- Left: text + bento -->
       <div class="about-left">
-        <p class="about-intro">
-          I'm passionate about creating clean,
-          scalable, and user-focused software solutions.
-        </p>
-        <p class="about-body">
-          I love mixing solid engineering with thoughtful design to create smooth,
-          modern digital experiences. I'm especially drawn to web development,
-          performance optimisation, and building interfaces that feel effortless.
-        </p>
-        <div class="bento-grid">
-          <div class="bento-card bento-edu">
-            <span class="bento-icon">&#127891;</span>
-            <h4>Education</h4>
-            <p>Bachelor of IT (2021&ndash;2025)<br>Computer Science &middot; Network Security</p>
+        <p class="about-intro">I'm a Computer Science graduate passionate about creating clean, scalable, and user-focused software solutions.</p>
+        <p class="about-body">I love mixing solid engineering with thoughtful design to create smooth, modern digital experiences. I'm especially drawn to web development, performance optimisation, and building interfaces that feel effortless.</p>
+
+        <!-- 4-cell info bento -->
+        <div class="about-bento">
+          <div class="ab-card bento-stagger">
+            <!-- Graduation cap -->
+            <span class="ab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Education</h4>
+              <p>Bachelor of IT (2021&ndash;2025)<br>Computer Science &middot; Network Security</p>
+            </div>
           </div>
-          <div class="bento-card bento-focus">
-            <span class="bento-icon">&#127919;</span>
-            <h4>Focus</h4>
-            <p>Website Development<br>Agile Methodologies<br>Clean Architecture</p>
+          <div class="ab-card bento-stagger">
+            <!-- Target / focus -->
+            <span class="ab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Focus</h4>
+              <p>Website Development<br>Agile Methodologies<br>Clean Architecture</p>
+            </div>
           </div>
-          <div class="bento-card bento-location">
-            <span class="bento-icon">&#128205;</span>
-            <h4>Based in</h4>
-            <p>Brisbane, Australia</p>
-            <span class="bento-sub">Open to remote &amp; relocation</span>
+          <div class="ab-card bento-stagger">
+            <!-- Location pin -->
+            <span class="ab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6z"/><circle cx="12" cy="8" r="2"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Based in</h4>
+              <p>Brisbane, Australia</p>
+              <span class="ab-sub">Open to remote &amp; relocation</span>
+            </div>
+          </div>
+          <div class="ab-card bento-stagger">
+            <!-- Book / learning -->
+            <span class="ab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Currently learning</h4>
+              <p>Web Design &middot; System Design &middot; Japanese</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="skills-col">
-        <div class="skill-block">
-          <h3>Languages</h3>
-          <div class="badges">
-            <span class="badge">HTML</span><span class="badge">CSS</span>
-            <span class="badge">JavaScript</span><span class="badge">Python</span>
-            <span class="badge">C#</span><span class="badge">Java</span>
+      <!-- Right: categorised skill grid -->
+      <div class="about-right">
+        <div class="skill-section">
+          <p class="skill-category">Languages</p>
+          <div class="skill-chips">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Python</span>
+            <span>C#</span>
+            <span>Java</span>
           </div>
         </div>
-        <div class="skill-block">
-          <h3>Tools &amp; Frameworks</h3>
-          <div class="badges">
-            <span class="badge">Django</span><span class="badge">JavaFX</span>
-            <span class="badge">Git</span><span class="badge">GitHub</span>
-            <span class="badge">Figma</span><span class="badge">VS Code</span>
+        <div class="skill-section">
+          <p class="skill-category">Frameworks &amp; Tools</p>
+          <div class="skill-chips">
+            <span>Django</span>
+            <span>JavaFX</span>
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>Figma</span>
+            <span>VS Code</span>
           </div>
         </div>
-        <div class="skill-block proficiency-block">
-          <h3>Proficiency</h3>
-          <div class="prof-bars" id="profBars">
-            <div class="prof-row">
-              <div class="prof-meta"><span>HTML / CSS</span><span class="prof-pct">90%</span></div>
-              <div class="prof-track"><div class="prof-fill" data-pct="90"></div></div>
-            </div>
-            <div class="prof-row">
-              <div class="prof-meta"><span>JavaScript</span><span class="prof-pct">80%</span></div>
-              <div class="prof-track"><div class="prof-fill" data-pct="80"></div></div>
-            </div>
-            <div class="prof-row">
-              <div class="prof-meta"><span>Python</span><span class="prof-pct">75%</span></div>
-              <div class="prof-track"><div class="prof-fill" data-pct="75"></div></div>
-            </div>
-            <div class="prof-row">
-              <div class="prof-meta"><span>Java</span><span class="prof-pct">70%</span></div>
-              <div class="prof-track"><div class="prof-fill" data-pct="70"></div></div>
-            </div>
-            <div class="prof-row">
-              <div class="prof-meta"><span>Django</span><span class="prof-pct">65%</span></div>
-              <div class="prof-track"><div class="prof-fill" data-pct="65"></div></div>
-            </div>
+        <div class="skill-section">
+          <p class="skill-category">Practices</p>
+          <div class="skill-chips">
+            <span>Agile / Scrum</span>
+            <span>TDD</span>
+            <span>OOP</span>
+            <span>REST APIs</span>
+            <span>UI/UX Design</span>
           </div>
         </div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="divider"></div>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="section reveal">
+<!-- ══════════════ PROJECTS ══════════════ -->
+<section id="projects" class="section reveal">
+  <div class="section-inner">
+    <div class="section-num" id="snum-projects">02</div>
     <p class="section-label">Selected work</p>
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-      <article class="project-card" onclick="openModal('m1')" role="button" tabindex="0">
-        <p class="project-num">01</p>
-        <h3>EyeStrain</h3>
-        <p class="project-tagline">Digital wellbeing desktop app focused on healthier screen habits through customisable reminders and break intervals.</p>
-        <div class="project-tags"><span>Java</span><span>JavaFX</span><span>Agile</span></div>
-        <p class="project-cta">View Details <span>&rarr;</span></p>
+
+      <article class="project-card reveal-left" onclick="openModal('m1')" role="button" tabindex="0">
+        <div class="project-card-accent"></div>
+        <div class="project-card-inner">
+          <p class="project-num">01</p>
+          <h3>EyeStrain</h3>
+          <p class="project-tagline">Digital wellbeing desktop app focused on healthier screen habits through customisable reminders and break intervals.</p>
+          <div class="project-tags"><span>Java</span><span>JavaFX</span><span>Agile</span></div>
+          <p class="project-cta">View Details <span>&rarr;</span></p>
+        </div>
       </article>
-      <article class="project-card" onclick="openModal('m2')" role="button" tabindex="0">
-        <p class="project-num">02</p>
-        <h3>GeoDesk AI</h3>
-        <p class="project-tagline">Customisable geospatial dashboard built with Python and Django for a more pleasant and productive user experience.</p>
-        <div class="project-tags"><span>JavaScript</span><span>Django</span><span>Python</span></div>
-        <p class="project-cta">View Details <span>&rarr;</span></p>
+
+      <article class="project-card reveal-right" onclick="openModal('m2')" role="button" tabindex="0">
+        <div class="project-card-accent"></div>
+        <div class="project-card-inner">
+          <p class="project-num">02</p>
+          <h3>GeoDesk AI</h3>
+          <p class="project-tagline">Customisable geospatial dashboard built with Python and Django for a more pleasant and productive user experience.</p>
+          <div class="project-tags"><span>JavaScript</span><span>Django</span><span>Python</span></div>
+          <p class="project-cta">View Details <span>&rarr;</span></p>
+        </div>
       </article>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="divider"></div>
-
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section reveal">
+<!-- ══════════════ EXPERIENCE ══════════════ -->
+<section id="experience" class="section reveal">
+  <div class="section-inner">
+    <div class="section-num" id="snum-experience">03</div>
     <p class="section-label">Work history</p>
     <h2 class="section-title">Experience</h2>
     <div class="timeline">
 
-      <!-- OreFox — full card, technical -->
       <div class="tl-item reveal-tl">
-        <div class="tl-marker">
-          <div class="tl-dot"></div>
-          <div class="tl-line"></div>
-        </div>
+        <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-card">
           <div class="tl-header">
             <div>
@@ -200,81 +304,65 @@
         </div>
       </div>
 
-      <!-- Customer Service — grouped compact card -->
       <div class="tl-item reveal-tl">
-        <div class="tl-marker">
-          <div class="tl-dot tl-dot-muted"></div>
-        </div>
+        <div class="tl-marker"><div class="tl-dot tl-dot-muted"></div></div>
         <div class="tl-card tl-card-compact">
           <div class="tl-header">
             <div>
               <h3 class="tl-role">Customer Service Roles</h3>
               <p class="tl-sub">Consistently employed throughout university &mdash; 2022 to present</p>
             </div>
-            <div class="tl-right">
-              <span class="tl-badge nontech">Non-Tech</span>
-            </div>
+            <div class="tl-right"><span class="tl-badge nontech">Non-Tech</span></div>
           </div>
-
-          <p class="tl-desc">
-            Maintained continuous part-time employment across three customer-facing roles throughout my degree,
-            developing strong communication, reliability, and the ability to perform under pressure.
-          </p>
-
-          <!-- Compact role rows -->
+          <p class="tl-desc">Maintained continuous part-time employment across three customer-facing roles throughout my degree, developing strong communication, reliability, and the ability to perform under pressure.</p>
           <div class="cs-roles">
             <div class="cs-role">
-              <div class="cs-role-left">
-                <span class="cs-dot"></span>
-                <div>
-                  <p class="cs-company">Coles Group</p>
-                  <p class="cs-detail">Retail customer service in a high-volume environment</p>
-                </div>
-              </div>
+              <div class="cs-role-left"><span class="cs-dot"></span><div><p class="cs-company">Coles Group</p><p class="cs-detail">Retail customer service in a high-volume environment</p></div></div>
               <span class="cs-date">Current</span>
             </div>
             <div class="cs-role">
-              <div class="cs-role-left">
-                <span class="cs-dot"></span>
-                <div>
-                  <p class="cs-company">Mt Warren Lanes</p>
-                  <p class="cs-detail">Guest experience, POS systems &amp; venue operations</p>
-                </div>
-              </div>
+              <div class="cs-role-left"><span class="cs-dot"></span><div><p class="cs-company">Mt Warren Lanes</p><p class="cs-detail">Guest experience, POS systems &amp; venue operations</p></div></div>
               <span class="cs-date">Jun 2023 &ndash; May 2025</span>
             </div>
             <div class="cs-role">
-              <div class="cs-role-left">
-                <span class="cs-dot"></span>
-                <div>
-                  <p class="cs-company">Go Bowling Ashmore</p>
-                  <p class="cs-detail">Front-line service in a fast-paced entertainment venue</p>
-                </div>
-              </div>
+              <div class="cs-role-left"><span class="cs-dot"></span><div><p class="cs-company">Go Bowling Ashmore</p><p class="cs-detail">Front-line service in a fast-paced entertainment venue</p></div></div>
               <span class="cs-date">Nov 2022 &ndash; May 2023</span>
             </div>
           </div>
-
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="reveal">
-    <p class="section-label">Say hello</p>
-    <h2 class="section-title">Let's work together.</h2>
-    <p class="contact-sub">Open to junior developer roles and graduate positions.</p>
-    <a class="contact-email" href="mailto:tythiemann.dev@outlook.com">&#9993; tythiemann.dev@outlook.com</a>
-  </section>
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact" class="section reveal">
+  <div class="section-inner contact-inner">
+    <p class="section-label section-label-light">Say hello</p>
+    <h2 class="section-title section-title-light">Let's work<br>together.</h2>
+    <p class="contact-sub">Open to junior developer roles and graduate positions — let's build something great.</p>
+    <a class="contact-email" href="mailto:tythiemann.dev@outlook.com">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      tythiemann.dev@outlook.com
+    </a>
+    <div class="contact-socials">
+      <a href="https://github.com/ttmocha" target="_blank" rel="noopener" class="contact-social">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/ty-thiemann-a4a1b3346/" target="_blank" rel="noopener" class="contact-social">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 Ty Thiemann. All rights reserved.</p>
-    <p>Built with HTML &middot; CSS &middot; JS</p>
-  </footer>
-
-</div>
+<footer>
+  <p>&copy; 2025 Ty Thiemann. All rights reserved.</p>
+  <p>Built with HTML &middot; CSS &middot; JS</p>
+</footer>
 
 <!-- MODALS -->
 <div id="m1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="m1-title">
@@ -293,8 +381,11 @@
       <li>Integrated backend functionality with clean architecture</li>
     </ul>
     <div class="modal-links">
-      <a class="primary"   href="https://github.com/KingKong74/CAB302_Desktop-application" target="_blank" rel="noopener">GitHub &rarr;</a>
-      <a class="secondary" href="https://drive.google.com/file/d/1JAMC6ZfcOH9XZh1LSP5hZQit_pcf5f7t/view?usp=sharing" target="_blank" rel="noopener">&#9654; Live Demo</a>
+      <a class="primary" href="https://github.com/KingKong74/CAB302_Desktop-application" target="_blank" rel="noopener">GitHub &rarr;</a>
+      <a class="secondary" href="https://drive.google.com/file/d/1JAMC6ZfcOH9XZh1LSP5hZQit_pcf5f7t/view?usp=sharing" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        Live Demo
+      </a>
     </div>
   </div>
 </div>
@@ -304,7 +395,7 @@
     <button class="modal-close" onclick="closeModal('m2')" aria-label="Close">&times;</button>
     <div class="modal-tag-row"><span>JavaScript</span><span>Django</span><span>Python</span><span>HTML/CSS</span><span>Figma</span></div>
     <h3 id="m2-title">GeoDesk AI &mdash; Capstone Project</h3>
-    <p class="exp-company" style="margin-bottom:0.5rem;">Work Integrated Learning &middot; OreFox AI Limited</p>
+    <p style="font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;">Work Integrated Learning &middot; OreFox AI Limited</p>
     <div class="modal-two-col">
       <div>
         <h4>Overview</h4>
@@ -318,7 +409,10 @@
           <li>Draggable, movable widgets using Sortable JS</li>
         </ul>
         <div class="modal-links">
-          <a class="primary" href="https://drive.google.com/file/d/1Bn1l06Kvl_NFHQAGHKyh1CvUUeJJ4aG2/view?usp=sharing" target="_blank" rel="noopener">&#9654; Live Demo</a>
+          <a class="primary" href="https://drive.google.com/file/d/1Bn1l06Kvl_NFHQAGHKyh1CvUUeJJ4aG2/view?usp=sharing" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            Live Demo
+          </a>
         </div>
       </div>
       <div>
@@ -332,119 +426,84 @@
   </div>
 </div>
 
+<!-- JS -->
 <script>
+/* ── Coffee loader ── */
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('pageLoader').classList.add('done');
-    document.body.classList.remove('loading');
-  }, 600);
+  const fill  = document.querySelector('.coffee-fill');
+  const steam = document.querySelectorAll('.steam');
+  fill.style.transition = 'transform 1s cubic-bezier(0.4,0,0.2,1)';
+  fill.style.transformOrigin = 'bottom';
+  fill.style.transform = 'scaleY(0)';
+  requestAnimationFrame(() => requestAnimationFrame(() => { fill.style.transform = 'scaleY(1)'; }));
+  setTimeout(() => steam.forEach(s => s.style.opacity = '1'), 800);
+  setTimeout(() => document.getElementById('loader').classList.add('done'), 1800);
 });
 
+/* ── Cursor glow ── */
 const glow = document.getElementById('cursorGlow');
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top  = e.clientY + 'px';
-});
+document.addEventListener('mousemove', e => { glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
 
+/* ── Particles ── */
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
-function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-const SYMS = ['☕','🌸','✦','·','○'];
-function mkParticle() {
-  return {
-    x: Math.random() * canvas.width, y: canvas.height + 20,
-    size: 9 + Math.random() * 12, speed: 0.25 + Math.random() * 0.45,
-    drift: (Math.random() - 0.5) * 0.35, opacity: 0.06 + Math.random() * 0.1,
-    sym: SYMS[Math.floor(Math.random() * SYMS.length)],
-    rot: Math.random() * Math.PI * 2, rotS: (Math.random() - 0.5) * 0.008
-  };
-}
-let parts = Array.from({length: 20}, () => { const p = mkParticle(); p.y = Math.random() * canvas.height; return p; });
-(function animP() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  parts.forEach((p, i) => {
-    ctx.save(); ctx.globalAlpha = p.opacity; ctx.font = p.size + 'px serif';
-    ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillText(p.sym, 0, 0); ctx.restore();
-    p.y -= p.speed; p.x += p.drift; p.rot += p.rotS;
-    if (p.y < -30) parts[i] = mkParticle();
-  });
-  requestAnimationFrame(animP);
-})();
+function resizeCanvas() { canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+const SYMS=['☕','✦','·','○','🌸'];
+function mkP(){ return { x:Math.random()*canvas.width, y:canvas.height+20, size:8+Math.random()*11, speed:0.2+Math.random()*0.38, drift:(Math.random()-0.5)*0.3, opacity:0.04+Math.random()*0.08, sym:SYMS[Math.floor(Math.random()*SYMS.length)], rot:Math.random()*Math.PI*2, rotS:(Math.random()-0.5)*0.007 }; }
+let parts=Array.from({length:20},()=>{ const p=mkP(); p.y=Math.random()*canvas.height; return p; });
+(function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); parts.forEach((p,i)=>{ ctx.save(); ctx.globalAlpha=p.opacity; ctx.font=p.size+'px serif'; ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillText(p.sym,0,0); ctx.restore(); p.y-=p.speed; p.x+=p.drift; p.rot+=p.rotS; if(p.y<-30) parts[i]=mkP(); }); requestAnimationFrame(anim); })();
 
-const lines = [
-  'CS grad focused on clean, modern solutions.',
-  'Building interfaces that feel effortless.'
-];
-let li = 0, ci = 0, del = false;
-const tel = document.getElementById('typedText');
-function typeLoop() {
-  const cur = lines[li];
-  tel.textContent = del ? cur.slice(0, --ci) : cur.slice(0, ++ci);
-  if (!del && ci === cur.length) { del = true; setTimeout(typeLoop, 2200); return; }
-  if (del && ci === 0) { del = false; li = (li + 1) % lines.length; }
-  setTimeout(typeLoop, del ? 32 : 58);
-}
-typeLoop();
-
-const profObs = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) {
-    document.querySelectorAll('.prof-fill').forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
-    profObs.disconnect();
-  }
-}, { threshold: 0.3 });
-const profBlock = document.querySelector('.proficiency-block');
-if (profBlock) profObs.observe(profBlock);
-
-const tlObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); tlObs.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal-tl').forEach(el => tlObs.observe(el));
-
-const hamburger = document.getElementById('hamburger');
-const sidenav   = document.getElementById('sidenav');
-const overlay   = document.getElementById('navOverlay');
-function openNav()  { sidenav.classList.add('open'); hamburger.classList.add('open'); overlay.classList.add('visible'); document.body.style.overflow='hidden'; }
-function closeNav() { sidenav.classList.remove('open'); hamburger.classList.remove('open'); overlay.classList.remove('visible'); document.body.style.overflow=''; }
-hamburger.addEventListener('click', () => sidenav.classList.contains('open') ? closeNav() : openNav());
-overlay.addEventListener('click', closeNav);
-document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeNav));
-
-const sectionObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      const a = document.querySelector('.nav-link[href="#' + e.target.id + '"]');
-      if (a) a.classList.add('active');
-    }
-  });
-}, { threshold: 0.35 });
-document.querySelectorAll('section[id]').forEach(s => sectionObs.observe(s));
-
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-
-function openModal(id)  { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(id) {
-  const m = document.getElementById(id);
-  m.classList.remove('open'); document.body.style.overflow='';
-  m.querySelectorAll('video').forEach(v => v.pause());
-}
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+/* ── Hero lettermark draw-in ── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const letter=document.querySelector('.mark-letter'), ring=document.querySelector('.mark-ring-accent');
+    if(letter){ letter.style.transition='stroke-dashoffset 1.1s cubic-bezier(0.4,0,0.2,1) 0.2s'; letter.style.strokeDashoffset='0'; }
+    if(ring){ ring.style.transition='stroke-dashoffset 1.4s cubic-bezier(0.4,0,0.2,1) 0s'; ring.style.strokeDashoffset='0'; }
+  }, 1900);
 });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
-    closeNav();
-  }
-});
-document.querySelectorAll('.project-card').forEach(c => {
-  c.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); c.click(); } });
-});
+
+/* ── Scroll dots ── */
+const sdots=document.querySelectorAll('.sdot');
+const dotObs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ sdots.forEach(d=>d.classList.remove('active')); const m=document.querySelector('.sdot[href="#'+e.target.id+'"]'); if(m) m.classList.add('active'); } }); },{ threshold:0.4 });
+document.querySelectorAll('section[id]').forEach(s=>dotObs.observe(s));
+
+/* ── Hamburger / drawer ── */
+const hamburger=document.getElementById('hamburger'), drawer=document.getElementById('drawer'), dOverlay=document.getElementById('drawerOverlay');
+function openDrawer(){ drawer.classList.add('open'); dOverlay.classList.add('visible'); document.body.style.overflow='hidden'; hamburger.classList.add('open'); }
+function closeDrawer(){ drawer.classList.remove('open'); dOverlay.classList.remove('visible'); document.body.style.overflow=''; hamburger.classList.remove('open'); }
+hamburger.addEventListener('click',()=>drawer.classList.contains('open')?closeDrawer():openDrawer());
+dOverlay.addEventListener('click',closeDrawer);
+document.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+
+/* ── Section number glow on entry ── */
+const numObs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.querySelector('.section-num')?.classList.add('lit'); }); },{ threshold:0.2 });
+document.querySelectorAll('.section-inner').forEach(s=>numObs.observe(s));
+
+
+
+/* ── Bento stagger ── */
+const bentoObs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ const cards=e.target.querySelectorAll('.bento-stagger'); cards.forEach((c,i)=>setTimeout(()=>c.classList.add('visible'),i*110)); bentoObs.unobserve(e.target); } }); },{ threshold:0.15 });
+const bg=document.querySelector('.about-bento'); if(bg) bentoObs.observe(bg);
+
+/* ── Project cards slide in from sides ── */
+const projObs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); projObs.unobserve(e.target); } }); },{ threshold:0.15 });
+document.querySelectorAll('.reveal-left,.reveal-right').forEach(el=>projObs.observe(el));
+
+/* ── Timeline reveal (slide from left) ── */
+const tlObs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); tlObs.unobserve(e.target); } }); },{ threshold:0.1 });
+document.querySelectorAll('.reveal-tl').forEach(el=>tlObs.observe(el));
+
+/* ── General scroll reveal ── */
+const revObs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } }); },{ threshold:0.07 });
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ── Modals ── */
+function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id){ const m=document.getElementById(id); m.classList.remove('open'); document.body.style.overflow=''; m.querySelectorAll('video').forEach(v=>v.pause()); }
+document.querySelectorAll('.modal-overlay').forEach(m=>{ m.addEventListener('click',e=>{ if(e.target===m) closeModal(m.id); }); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id)); closeDrawer(); } });
+document.querySelectorAll('.project-card').forEach(c=>{ c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.click(); } }); });
 </script>
 </body>
 </html>
